@@ -1,4 +1,5 @@
 process NANOPLOT {
+    publishDir "${params.outdir}/NanoPlot/${meta.id}", mode: 'copy'
     tag "$meta.id"
     label 'process_low'
 

@@ -21,6 +21,7 @@ process NANOPLOT {
     task.ext.when == null || task.ext.when
 
     script:
+    def prefix = task.ext.prefix ?: "${meta.id}"
     def args = task.ext.args ?: ''
     def input_file = ("$ontfile".endsWith(".fastq.gz") || "$ontfile".endsWith(".fq.gz")) ? "--fastq ${ontfile}" :
         ("$ontfile".endsWith(".txt")) ? "--summary ${ontfile}" : ''
@@ -30,6 +31,7 @@ process NANOPLOT {
         -t $task.cpus \\
         $input_file
 
+    mv NanoStats.txt ${prefix}_NanoStats.txt
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
         nanoplot: \$(echo \$(NanoPlot --version 2>&1) | sed 's/^.*NanoPlot //; s/ .*\$//')

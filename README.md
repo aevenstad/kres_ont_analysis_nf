@@ -28,4 +28,5 @@ sample5,barcode16
 ```
 
 ## TO-DO
-* 
+* After QC, add a process to define which samples should continue for assembly++ (some threshold for num reads or size of fastq that makes sense)
+

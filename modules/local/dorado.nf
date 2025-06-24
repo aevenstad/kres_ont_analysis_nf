@@ -30,7 +30,7 @@ process DORADO_DEMUX {
     path fastq
 
     output:
-    path("demux_fastq/*fastq"), emit: fastq
+    path("demux_fastq/*fastq.gz"), emit: fastq
 
     script:
     """
@@ -39,5 +39,7 @@ process DORADO_DEMUX {
     --emit-fastq \\
     --output-dir demux_fastq \\
     ${fastq}
+
+    gzip demux_fastq/*.fastq
     """
 }

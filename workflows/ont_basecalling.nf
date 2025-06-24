@@ -49,17 +49,14 @@ workflow ONT_BASECALLING {
         tuple(file, barcode)
         }
     }
-    ch_samplesheet.view()
-        
-
-    //ch_samplesheet.view { "Channel emits: $it (${it.getClass()})" }
-    //ch_demux_fastqs_by_barcode.view()
+    //ch_samplesheet.view()
 
     ch_sample_fastqs = ch_samplesheet.join(ch_demux_fastqs_by_barcode, by: 1)
         .map { barcode, sample_info, fastq_path -> 
             tuple([id: sample_info.id], fastq_path) }
-    ch_sample_fastqs.view()
+    //ch_sample_fastqs.view()
     //ch_sample_fastqs = Channel.empty()
+
 
     //
     // MODULE: Run FastQC
@@ -70,6 +67,15 @@ workflow ONT_BASECALLING {
     ch_multiqc_files = ch_multiqc_files.mix(FASTQC.out.zip.collect{it[1]})
     ch_versions = ch_versions.mix(FASTQC.out.versions.first())
 
+
+    //
+    // MODULE: Run NanoPlot
+    //
+    NANOPLOT (
+        ch_sample_fastqs
+    )
+    ch_multiqc_files = ch_multiqc_files.mix(NANOPLOT.out.txt.collect{ it[1] })
+    ch_versions = ch_versions.mix(NANOPLOT.out.versions.first())
     //
     // Collate and save software versions
     //

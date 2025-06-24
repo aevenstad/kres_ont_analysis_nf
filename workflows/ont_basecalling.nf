@@ -3,8 +3,11 @@
     IMPORT MODULES / SUBWORKFLOWS / FUNCTIONS
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
+include { DORADO_BASECALL        } from '../modules/local/dorado'
+include { DORADO_DEMUX           } from '../modules/local/dorado'
 include { FASTQC                 } from '../modules/nf-core/fastqc/main'
 include { MULTIQC                } from '../modules/nf-core/multiqc/main'
+include { NANOPLOT               } from '../modules/nf-core/nanoplot/main'
 include { paramsSummaryMap       } from 'plugin/nf-schema'
 include { paramsSummaryMultiqc   } from '../subworkflows/nf-core/utils_nfcore_pipeline'
 include { softwareVersionsToYAML } from '../subworkflows/nf-core/utils_nfcore_pipeline'
@@ -24,11 +27,45 @@ workflow ONT_BASECALLING {
 
     ch_versions = Channel.empty()
     ch_multiqc_files = Channel.empty()
+
+    //
+    // MODULE: Basecalling with DORADO
+    //
+    pod5_dir = Channel.fromPath(params.pod5)
+
+    DORADO_BASECALL(pod5_dir)
+    basecalled_fastq_ch = DORADO_BASECALL.out.fastq
+    ch_versions = ch_versions.mix(DORADO_BASECALL.out.versions.first())
+
+    // Demultiplexing
+    DORADO_DEMUX(basecalled_fastq_ch)
+    demux_fastq_ch = DORADO_DEMUX.out.fastq
+
+
+    ch_demux_fastqs_by_barcode = demux_fastq_ch.flatMap() { file_list ->
+    file_list.collect { file ->
+        def m = file.name =~ /(barcode\d+)/
+        def barcode = m ? m[0][1] : null
+        tuple(file, barcode)
+        }
+    }
+    ch_samplesheet.view()
+        
+
+    //ch_samplesheet.view { "Channel emits: $it (${it.getClass()})" }
+    //ch_demux_fastqs_by_barcode.view()
+
+    ch_sample_fastqs = ch_samplesheet.join(ch_demux_fastqs_by_barcode, by: 1)
+        .map { barcode, sample_info, fastq_path -> 
+            tuple([id: sample_info.id], fastq_path) }
+    ch_sample_fastqs.view()
+    //ch_sample_fastqs = Channel.empty()
+
     //
     // MODULE: Run FastQC
     //
     FASTQC (
-        ch_samplesheet
+        ch_sample_fastqs
     )
     ch_multiqc_files = ch_multiqc_files.mix(FASTQC.out.zip.collect{it[1]})
     ch_versions = ch_versions.mix(FASTQC.out.versions.first())

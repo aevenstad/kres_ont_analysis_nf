@@ -13,7 +13,7 @@
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
 
-include { ONT_BASECALLING  } from './workflows/ont_basecalling'
+include { ONT_BASECALLING         } from './workflows/ont_basecalling'
 include { PIPELINE_INITIALISATION } from './subworkflows/local/utils_nfcore_ont_basecalling_pipeline'
 include { PIPELINE_COMPLETION     } from './subworkflows/local/utils_nfcore_ont_basecalling_pipeline'
 /*
@@ -29,7 +29,7 @@ workflow KRESUNN_ONT_BASECALLING {
 
     take:
     samplesheet // channel: samplesheet read in from --input
-
+    
     main:
 
     //

@@ -23,6 +23,14 @@
                     "help_text": "You will need to create a design file with information about the samples in your experiment before running the pipeline. Use this parameter to specify its location. It has to be a comma-separated file with 3 columns, and a header row.",
                     "fa_icon": "fas fa-file-csv"
                 },
+                "pod5": {
+                    "type": "string",
+                    "format": "directory-path",
+                    "exists": true,
+                    "description": "Path to a pod5 directory.",
+                    "help_text": "The pod5 directory contains the raw data files from the Oxford Nanopore sequencer.",
+                    "fa_icon": "fas fa-file-alt"
+                },
                 "outdir": {
                     "type": "string",
                     "format": "directory-path",

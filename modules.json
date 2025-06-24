@@ -14,6 +14,11 @@
                         "branch": "master",
                         "git_sha": "cf17ca47590cc578dfb47db1c2a44ef86f89976d",
                         "installed_by": ["modules"]
+                    },
+                    "nanoplot": {
+                        "branch": "master",
+                        "git_sha": "457e8b54d1d2d3ec9208c55b66cdd573c976372f",
+                        "installed_by": ["modules"]
                     }
                 }
             },

@@ -47,7 +47,7 @@
         "dorado_options": {
             "title": "Dorado options",
             "type": "object",
-            "fa_icon": "fas fa-microchip",
+            "fa_icon": "fas fa-terminal",
             "description": "Parameters used to run the Dorado basecaller.",
             "help_text": "These parameters are used to configure the Dorado basecaller. You can find more information about these parameters in the [Dorado documentation]",
             "required": ["dorado_model", "barcode_kit"],
@@ -55,13 +55,11 @@
                 "dorado_model": {
                     "type": "string",
                     "description": "Dorado model to use for basecalling. (default will use the latest 'sup' model)",
-                    "default": "sup",
                     "fa_icon": "fas fa-microchip"
                 },
                 "barcode_kit": {
                     "type": "string",
                     "description": "Barcode kit used for basecalling and demultiplexing.",
-                    "default": "SQK-RBK114-24",
                     "fa_icon": "fas fa-barcode"
                 }
             }

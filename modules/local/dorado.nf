@@ -12,7 +12,7 @@ process DORADO_BASECALL {
 
     script:
     """
-    dorado basecaller ${params.dorado_mode} \\
+    dorado basecaller ${params.dorado_model} \\
     --emit-fastq \\
     --device cuda:0 \\
     --kit-name ${params.barcode_kit} \\

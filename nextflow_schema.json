@@ -1,7 +1,7 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "$id": "https://raw.githubusercontent.com/kres-UNN/ont_basecalling/master/nextflow_schema.json",
-    "title": "kres-UNN/ont_basecalling pipeline parameters",
+    "$id": "https://raw.githubusercontent.com/aevenstad/kres_ont_analysis_nf/master/nextflow_schema.json",
+    "title": "aevenstad/kres_ont_analysis_nf pipeline parameters",
     "description": "Basecalling of ONT data",
     "type": "object",
     "$defs": {

@@ -1,7 +1,7 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "$id": "https://raw.githubusercontent.com/kres-UNN/ont_basecalling/master/assets/schema_input.json",
-    "title": "kres-UNN/ont_basecalling pipeline - params.input schema",
+    "$id": "https://raw.githubusercontent.com/aevenstad/kres_ont_analysis_nf/master/assets/schema_input.json",
+    "title": "aevenstad/kres_ont_analysis_nf pipeline - params.input schema",
     "description": "Schema for the file provided with params.input",
     "type": "array",
     "items": {

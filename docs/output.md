@@ -1,4 +1,4 @@
-# kres-UNN/ont_basecalling: Output
+# aevenstad/kres_ont_analysis_nf: Output
 
 ## Introduction
 

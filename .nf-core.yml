@@ -50,8 +50,8 @@ lint:
     - .github/workflows/awsfulltest.yml
 
 template:
-  org: kres-UNN
-  name: ont_basecalling
+  org: aevenstad
+  name: kres_ont_analysis_nf
   description: Basecalling of ONT data
   author: aevenstad
   version: 1.0.0dev

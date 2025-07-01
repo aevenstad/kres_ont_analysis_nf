@@ -1,5 +1,5 @@
 //
-// Subworkflow with functionality specific to the kres-UNN/ont_basecalling pipeline
+// Subworkflow with functionality specific to the aevenstad/kres_ont_analysis_nf pipeline
 //
 
 /*

@@ -1,9 +1,9 @@
 #!/usr/bin/env nextflow
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    kres-UNN/ont_basecalling
+    aevenstad/kres_ont_analysis_nf
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    Github : https://github.com/kres-UNN/ont_basecalling
+    Github : https://github.com/aevenstad/kres_ont_analysis_nf
 ----------------------------------------------------------------------------------------
 */
 
